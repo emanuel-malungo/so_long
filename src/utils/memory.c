@@ -5,51 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:00:47 by emalungo          #+#    #+#             */
-/*   Updated: 2024/09/19 14:56:35 by emalungo         ###   ########.fr       */
+/*   Created: 2024/09/23 11:51:51 by emalungo          #+#    #+#             */
+/*   Updated: 2024/09/23 12:04:20 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-		free(split[i]);
-	free(split);
-}
-
-t_game	*init_game(void)
+t_game	*init_strut(void)
 {
 	t_game	*game;
 
-	game = malloc(sizeof(t_game));
+	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
 		return (NULL);
-	game->map = NULL;
-	game->buffer = NULL;
-	game->fd = 0;
+	game->m.fd = 0;
+	game->m.rows = 0;
+	game->m.cols = 0;
+	game->m.map = NULL;
+	game->m.count_p = 0;
+	game->m.count_e = 0;
+	game->m.count_c = 0;
+	game->m.buffer = NULL;
 	return (game);
 }
-
-void	free_game(t_game *game)
+void	ft_free_struct(t_game *game)
 {
 	int	i;
 
-	i = 0;
 	if (!game)
 		return ;
-	if (game->map)
+	i = 0;
+	if (game->m.map)
 	{
-		while (game->map[i])
+		while (game->m.map[i])
 		{
-			free(game->map[i]);
+			free(game->m.map[i]);
 			i++;
 		}
-		free(game->map);
+		free(game->m.map);
 	}
 	free(game);
+}
+
+void	*ft_realloc(void* ptr, size_t new_size, size_t old_size)
+{
+	void	*new_ptr;
+
+	new_ptr = NULL;
+	if (!ptr)
+		return (malloc(new_size));
+	if (new_size == 0) 
+	{
+        free(ptr);
+        return NULL;
+    }
+	if (new_size <= old_size)
+		return (ptr);
+	new_ptr = malloc(new_size);
+	ft_memcpy(new_ptr, ptr, old_size);
+	free(ptr);
+	return (new_ptr);
 }
