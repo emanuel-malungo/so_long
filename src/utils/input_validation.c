@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:22:26 by emalungo          #+#    #+#             */
-/*   Updated: 2024/09/23 12:15:15 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:54:40 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 void	input_valid(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		ft_putstr_fd("Usage: ./so_long <map_file>\n", 2);
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("Usage: ./so_long <map_file>\n");
 	if (!check_extension(argv[1]))
-	{
-		ft_putstr_fd("Error: Invalid file extension.\n", 2);
-		exit(EXIT_FAILURE);
-	}
+		ft_error_exit("Error: Invalid file extension.\n");
 }
 
 void	validate_map(t_game *game)
@@ -47,6 +41,11 @@ void	validate_map(t_game *game)
 	{
 		ft_free_struct(game);
 		ft_error_exit("Invalid characters in map.\n");
+	}
+	if (!check_map_dimensions(game))
+	{
+		ft_free_struct(game);
+		ft_error_exit("Map larger than the screen size\n");
 	}
 }
 

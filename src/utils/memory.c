@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:51:51 by emalungo          #+#    #+#             */
-/*   Updated: 2024/09/23 12:04:20 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:54:37 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ t_game	*init_strut(void)
 	game->m.count_p = 0;
 	game->m.count_e = 0;
 	game->m.count_c = 0;
+	game->m.count_move = 0;
 	game->m.buffer = NULL;
+	game->mlx_ptr = NULL;
+	game->mlx_ptr = NULL;
 	return (game);
 }
+
 void	ft_free_struct(t_game *game)
 {
 	int	i;
@@ -36,7 +40,7 @@ void	ft_free_struct(t_game *game)
 	if (!game)
 		return ;
 	i = 0;
-	if (game->m.map)
+	if (game->m.map != NULL)
 	{
 		while (game->m.map[i])
 		{
@@ -48,18 +52,21 @@ void	ft_free_struct(t_game *game)
 	free(game);
 }
 
-void	*ft_realloc(void* ptr, size_t new_size, size_t old_size)
+void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
 {
 	void	*new_ptr;
 
 	new_ptr = NULL;
 	if (!ptr)
-		return (malloc(new_size));
-	if (new_size == 0) 
 	{
-        free(ptr);
-        return NULL;
-    }
+		new_ptr = malloc(new_size);
+		return (new_ptr);
+	}
+	if (new_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
 	if (new_size <= old_size)
 		return (ptr);
 	new_ptr = malloc(new_size);

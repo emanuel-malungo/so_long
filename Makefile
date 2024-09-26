@@ -20,7 +20,11 @@ SRCS = $(SRCDIR)/so_long.c \
        $(SRCDIR)/utils/error_checking.c \
 	   $(SRCDIR)/utils/input_validation.c \
 	   $(SRCDIR)/map/parse_map.c \
-	   $(SRCDIR)/game/game.c
+	   $(SRCDIR)/game/game.c \
+	   $(SRCDIR)/game/render.c \
+	   $(SRCDIR)/map/draw_map.c \
+	   $(SRCDIR)/utils/utils.c \
+	   $(SRCDIR)/game/check_game.c
 
 OBJS = $(SRCS:.c=.o)
 

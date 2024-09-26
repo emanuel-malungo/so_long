@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 01:08:52 by emalungo          #+#    #+#             */
-/*   Updated: 2024/09/23 12:53:12 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/09/26 11:54:44 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	check_map_elements(t_game *game)
 		}
 		i++;
 	}
-	if ((game->m.count_p == 1) &&
-		(game->m.count_e == 1) && (game->m.count_c > 0))
+	if ((game->m.count_p == 1)
+		&& (game->m.count_e == 1) && (game->m.count_c > 0))
 	{
 		return (1);
 	}
