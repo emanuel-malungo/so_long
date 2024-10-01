@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"so_long.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"limits": "c",
+		"x.h": "c"
 	}
 }

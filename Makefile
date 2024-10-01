@@ -16,15 +16,15 @@ MLXDIR = mlx
 
 # Arquivos fonte e objetos
 SRCS = $(SRCDIR)/so_long.c \
-	   $(SRCDIR)/utils/memory.c \
-       $(SRCDIR)/utils/error_checking.c \
-	   $(SRCDIR)/utils/input_validation.c \
-	   $(SRCDIR)/map/parse_map.c \
-	   $(SRCDIR)/game/game.c \
-	   $(SRCDIR)/game/render.c \
-	   $(SRCDIR)/map/draw_map.c \
-	   $(SRCDIR)/utils/utils.c \
-	   $(SRCDIR)/game/check_game.c
+	   $(SRCDIR)/utils.c \
+       $(SRCDIR)/map_validation.c \
+	   $(SRCDIR)/input_validation.c \
+	   $(SRCDIR)/parse_map.c \
+	   $(SRCDIR)/game.c \
+	   $(SRCDIR)/render.c \
+	   $(SRCDIR)/check_collection.c \
+	   $(SRCDIR)/player_movement.c \
+	   $(SRCDIR)/check_path_map.c
 
 OBJS = $(SRCS:.c=.o)
 
