@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:28:07 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/02 09:29:40 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:09:29 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ void	*read_map(t_game *game)
 void	get_parse_map(t_game *game)
 {
 	if (!read_map(game) || !game->m.buffer)
-		ft_error_exit("Error: reading map");
+		ft_error_exit("Error:\n reading map");
 	if (game->m.buffer[0] == '\n')
 	{
 		free(game->m.buffer);
 		ft_free_struct(game);
-		ft_error_exit("Error: map cannot start with a newline\n");
+		ft_error_exit("Error:\n map cannot start with a newline\n");
 	}
 	check_buffer(game);
 	game->m.map = ft_split(game->m.buffer, '\n');
@@ -115,6 +115,6 @@ void	get_parse_map(t_game *game)
 	if (!game->m.map)
 	{
 		ft_free_struct(game);
-		ft_error_exit("Error splitting map\n");
+		ft_error_exit("Error:\n splitting map\n");
 	}
 }

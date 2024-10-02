@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:22:26 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/02 09:26:11 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:08:39 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ft_error_exit(char *str)
 void	input_validation(int argc, char **argv)
 {
 	if (argc != 2)
-		ft_error_exit("Usage: ./so_long <map_file>\n");
+		ft_error_exit("Error:\n Usage: ./so_long <map_file>\n");
 	if (!check_extension(argv[1]))
-		ft_error_exit("Error: Invalid file extension.\n");
+		ft_error_exit("Error:\n Invalid file extension.\n");
 }
 
 // Validates the map structure, walls, characters, and path
@@ -34,22 +34,22 @@ void	map_validation(t_game *game)
 	if (!check_map_shape(game))
 	{
 		ft_free_struct(game);
-		ft_error_exit("Map must be rectangular.\n");
+		ft_error_exit("Error:\n Map must be rectangular.\n");
 	}
 	if (!check_wall_map(game))
 	{
 		ft_free_struct(game);
-		ft_error_exit("Invalid walls.\n");
+		ft_error_exit("Error:\n Invalid walls.\n");
 	}
 	if (!check_map_elements_invalid(game))
 	{
 		ft_free_struct(game);
-		ft_error_exit("Invalid characters in map.\n");
+		ft_error_exit("Error:\n Invalid characters in map.\n");
 	}
 	if (!check_path_map(game))
 	{
 		ft_free_struct(game);
-		ft_error_exit("Invalid map path.\n");
+		ft_error_exit("Error:\n Invalid map path.\n");
 	}
 }
 
@@ -66,7 +66,7 @@ void	check_buffer(t_game *game)
 		{
 			free(game->m.buffer);
 			ft_free_struct(game);
-			ft_error_exit("Error: map cannot have two newlines in a row\n");
+			ft_error_exit("Error:\n map cannot have two newlines in a row\n");
 		}
 		i++;
 	}
@@ -74,6 +74,6 @@ void	check_buffer(t_game *game)
 	{
 		free(game->m.buffer);
 		ft_free_struct(game);
-		ft_error_exit("Error: map cannot end with a newline\n");
+		ft_error_exit("Error:\n map cannot end with a newline\n");
 	}
 }
