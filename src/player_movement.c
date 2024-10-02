@@ -6,12 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:54:08 by emalungo          #+#    #+#             */
-/*   Updated: 2024/09/30 11:37:54 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:31:55 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Moves the player up if the next position is valid
 void	move_up(t_game *game)
 {
 	int	i;
@@ -34,6 +35,7 @@ void	move_up(t_game *game)
 	}
 }
 
+// Moves the player down if the next position is valid
 void	move_down(t_game *game)
 {
 	int	i;
@@ -56,6 +58,7 @@ void	move_down(t_game *game)
 	}
 }
 
+// Moves the player right if the next position is valid
 void	move_right(t_game *game)
 {
 	int	i;
@@ -78,6 +81,7 @@ void	move_right(t_game *game)
 	}
 }
 
+// Moves the player left if the next position is valid
 void	move_left(t_game *game)
 {
 	int	i;
@@ -100,6 +104,7 @@ void	move_left(t_game *game)
 	}
 }
 
+// Finds and updates the player's current position in the map
 void	position_player(t_game *game)
 {
 	int	i;

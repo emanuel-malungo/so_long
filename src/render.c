@@ -6,12 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 06:47:09 by emalungo          #+#    #+#             */
-/*   Updated: 2024/09/30 13:29:36 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:41:57 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Loads textures for different map elements
 int	lead_texture(t_game *game, int img_width, int img_height)
 {
 	game->img_0 = mlx_xpm_file_to_image(game->mlx_ptr,
@@ -20,9 +21,9 @@ int	lead_texture(t_game *game, int img_width, int img_height)
 	game->img_1 = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./texture/IMG_1.xpm", &img_width, &img_height);
 	game->img_p = mlx_xpm_file_to_image(game->mlx_ptr,
-			"./texture/IMG_P4.xpm", &img_width, &img_height);
+			"./texture/IMG_P3.xpm", &img_width, &img_height);
 	game->img_c = mlx_xpm_file_to_image(game->mlx_ptr,
-			"./texture/IMG_C4.xpm", &img_width, &img_height);
+			"./texture/IMG_C3.xpm", &img_width, &img_height);
 	game->img_e = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./texture/IMG_E1.xpm", &img_width, &img_height);
 	if (!game->img_0 || !game->img_1 || !game->img_p
@@ -31,6 +32,7 @@ int	lead_texture(t_game *game, int img_width, int img_height)
 	return (1);
 }
 
+// Draws the corresponding image for each map tile
 void	fill_map(t_game *game, int x, int y)
 {
 	if (game->m.map[x][y] == '1')
@@ -50,6 +52,7 @@ void	fill_map(t_game *game, int x, int y)
 			game->img_e, y * 50, x * 50);
 }
 
+// Iterates through the map and draws all tiles
 int	draw_map(t_game *game)
 {
 	int	x;

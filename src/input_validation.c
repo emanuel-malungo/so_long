@@ -6,17 +6,20 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:22:26 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/01 16:43:56 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:26:11 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Prints error message and exits the program
 void	ft_error_exit(char *str)
 {
 	ft_putstr_fd(str, 2);
 	exit(EXIT_FAILURE);
 }
+
+// Validates input arguments
 void	input_validation(int argc, char **argv)
 {
 	if (argc != 2)
@@ -24,6 +27,8 @@ void	input_validation(int argc, char **argv)
 	if (!check_extension(argv[1]))
 		ft_error_exit("Error: Invalid file extension.\n");
 }
+
+// Validates the map structure, walls, characters, and path
 void	map_validation(t_game *game)
 {
 	if (!check_map_shape(game))
@@ -47,20 +52,17 @@ void	map_validation(t_game *game)
 		ft_error_exit("Invalid map path.\n");
 	}
 }
+
+// Checks for invalid newlines in the map buffer
 void	check_buffer(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	if (game->m.buffer[0] == '\n')
-	{
-		free(game->m.buffer);
-		ft_free_struct(game);
-		ft_error_exit("Error: map cannot start with a newline\n");
-	}
 	while (game->m.buffer[i])
 	{
-		if (game->m.buffer[i] == '\n' && game->m.buffer[i + 1] && game->m.buffer[i + 1] == '\n')
+		if ((game->m.buffer[i] == '\n') && (game->m.buffer[i + 1])
+			&& (game->m.buffer[i + 1] == '\n'))
 		{
 			free(game->m.buffer);
 			ft_free_struct(game);
@@ -75,4 +77,3 @@ void	check_buffer(t_game *game)
 		ft_error_exit("Error: map cannot end with a newline\n");
 	}
 }
-

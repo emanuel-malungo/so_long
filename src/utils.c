@@ -6,12 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:51:51 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/01 16:38:48 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:38:00 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Initializes and allocates memory for the game structure
 t_game	*init_strut(void)
 {
 	t_game	*game;
@@ -40,6 +41,7 @@ t_game	*init_strut(void)
 	return (game);
 }
 
+// Frees memory allocated for the game structure and its map
 void	ft_free_struct(t_game *game)
 {
 	int	i;
@@ -59,17 +61,20 @@ void	ft_free_struct(t_game *game)
 	free(game);
 }
 
+// Prints a string followed by a number and a character
 void	ft_print_str_nbr(char *str, int nbr, char c)
 {
 	ft_putstr_fd(str, 1);
 	ft_putnbr_fd(nbr, 1);
 	ft_putchar_fd(c, 1);
 }
+
+// Creates a copy of the map from the game structure
 char	**copy_map(t_game *game)
 {
-	int	i;
-	int j;
-	char **map_cpy;
+	int		i;
+	int		j;
+	char	**map_cpy;
 
 	map_cpy = malloc(sizeof(char *) * (game->m.rows + 1));
 	i = 0;
@@ -88,6 +93,8 @@ char	**copy_map(t_game *game)
 	map_cpy[i] = '\0';
 	return (map_cpy);
 }
+
+// Counts the occurrences of players, exits, and collectibles in the map
 void	count_elements(t_game *game)
 {
 	int	i;

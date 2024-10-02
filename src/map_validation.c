@@ -6,12 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 01:08:52 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/01 16:36:47 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:30:08 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Checks if the file has a ".ber" extension
 int	check_extension(const char *str)
 {
 	int	i;
@@ -30,6 +31,7 @@ int	check_extension(const char *str)
 	return (0);
 }
 
+// Validates that the map is rectangular
 int	check_map_shape(t_game *game)
 {
 	int	i;
@@ -50,6 +52,7 @@ int	check_map_shape(t_game *game)
 	return (1);
 }
 
+// Checks if the map is surrounded by walls ('1')
 int	check_wall_map(t_game *game)
 {
 	int	i;
@@ -79,6 +82,7 @@ int	check_wall_map(t_game *game)
 	return (1);
 }
 
+// Checks for valid player, exit, and collectible counts
 void	check_map_elements(t_game *game)
 {
 	count_elements(game);
@@ -99,6 +103,7 @@ void	check_map_elements(t_game *game)
 	}
 }
 
+// Validates map characters ('1', '0', 'C', 'P', 'E')
 int	check_map_elements_invalid(t_game *game)
 {
 	int	i;

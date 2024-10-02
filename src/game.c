@@ -6,12 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:20:13 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/01 16:32:01 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:25:09 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Destroys all loaded images in the game
 void	destroy_all_imagens(t_game *game)
 {
 	if (game->img_1 != NULL)
@@ -26,6 +27,7 @@ void	destroy_all_imagens(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->img_p);
 }
 
+// Destroys game resources, closes the window, and exits the game
 int	on_destroy(t_game *game)
 {
 	destroy_all_imagens(game);
@@ -38,6 +40,7 @@ int	on_destroy(t_game *game)
 	return (0);
 }
 
+// Handles keypress events to move the player or exit the game
 int	on_keypress(int keysym, t_game *game)
 {
 	if (keysym == 65307)
@@ -53,6 +56,7 @@ int	on_keypress(int keysym, t_game *game)
 	return (0);
 }
 
+// Opens a file, parses the map, and validates its elements
 void	open_file(t_game *game, char *path_name)
 {
 	game->m.img_width = 0;
@@ -70,6 +74,7 @@ void	open_file(t_game *game, char *path_name)
 	map_validation(game);
 }
 
+// Initializes the game, loads textures, creates window, starts loop
 void	init_game(t_game *game, char *path_name)
 {
 	open_file(game, path_name);

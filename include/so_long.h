@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 00:59:46 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/01 16:38:53 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:56:52 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ typedef struct s_map
 	int		img_height;
 }		t_map;
 
-typedef struct	s_point
+typedef struct s_point
 {
-	int x;
-	int y;
-} t_point;
+	int	x;
+	int	y;
+}		t_point;
 
 typedef struct s_play
 {
@@ -102,10 +102,10 @@ int		check_collection_left(t_game *game, int i, int j);
 int		check_collection_right(t_game *game, int i, int j);
 
 // ./src/check_path_map.c
-void	free_map_copy(char **map_copy);
-int 	check_map_copy(char **map_copy, t_game *game);
-void	fill(char **tab, t_point size, t_point cur, char to_fill);
 int		check_path_map(t_game *game);
+void	free_map_copy(char **map_copy);
+int		check_map_copy(char **map_copy, t_game *game);
+void	fill(char **tab, t_point size, t_point cur, char to_fill);
 
 // ./src/reder.c
 int		draw_map(t_game *game);

@@ -6,12 +6,13 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 11:28:07 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/01 13:52:45 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:29:40 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// Calculates the number of columns and rows in the map
 void	calculate_map_dimensions(t_game *game)
 {
 	game->m.cols = 0;
@@ -22,6 +23,7 @@ void	calculate_map_dimensions(t_game *game)
 		game->m.rows++;
 }
 
+// Reallocates memory for a pointer to a new size
 void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
 {
 	void	*new_ptr;
@@ -45,6 +47,7 @@ void	*ft_realloc(void *ptr, size_t new_size, size_t old_size)
 	return (new_ptr);
 }
 
+// Reads data from the file and resizes the buffer as needed
 void	*read_and_resize_buffer(t_game *game, size_t *t_read, size_t *buffer_s)
 {
 	ssize_t	bytes_r;
@@ -73,6 +76,7 @@ void	*read_and_resize_buffer(t_game *game, size_t *t_read, size_t *buffer_s)
 	return (game->m.buffer);
 }
 
+// Reads the entire map into a dynamically allocated buffer
 void	*read_map(t_game *game)
 {
 	char	*buffer;
@@ -94,10 +98,17 @@ void	*read_map(t_game *game)
 	return (game->m.buffer);
 }
 
+// Parses the map from the buffer, checks for errors, and splits it into lines
 void	get_parse_map(t_game *game)
 {
 	if (!read_map(game) || !game->m.buffer)
 		ft_error_exit("Error: reading map");
+	if (game->m.buffer[0] == '\n')
+	{
+		free(game->m.buffer);
+		ft_free_struct(game);
+		ft_error_exit("Error: map cannot start with a newline\n");
+	}
 	check_buffer(game);
 	game->m.map = ft_split(game->m.buffer, '\n');
 	free(game->m.buffer);
