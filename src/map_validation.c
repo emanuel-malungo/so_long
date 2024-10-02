@@ -6,7 +6,7 @@
 /*   By: emalungo <emalungo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 01:08:52 by emalungo          #+#    #+#             */
-/*   Updated: 2024/10/02 09:30:08 by emalungo         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:10:58 by emalungo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@ int	check_extension(const char *str)
 {
 	int	i;
 
-	i = ft_strlen(str);
-	while (i)
+	i = 0;
+	while (str[i])
 	{
-		if (str[i] == 'r' && str[i - 1] == 'e')
+		if ((str[i] == '.') && (str[i + 1] == 'b'))
 		{
-			if (str[i - 2] == 'b' && str[i - 3] == '.')
-				if (str[i - 4] != '\0')
+			if ((str[i + 2] == 'e') && (str[i + 3] == 'r'))
+			{
+				if (str[i + 4] == '\0')
 					return (1);
+				return (0);
+			}
+			return (0);
 		}
-		i--;
+		i++;
 	}
 	return (0);
 }
